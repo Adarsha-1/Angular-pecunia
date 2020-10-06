@@ -1,0 +1,74 @@
+<h2>CARD BLOCK</h2>
+<div class="row" *ngIf="isSearchFlag">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" >
+      <div  style="width: 400px;">
+        <form [formGroup]="searchFilter"  (ngSubmit)="Search()">
+    
+            <div class="form-group">
+              <label for="name">Atm Number</label>
+              <input type="text" class="form-control"  formControlName="id" data-toggle="tooltip" 
+                 data-placement="right" placeholder="Enter atm number" required>
+                 <div class="alert alert-danger" *ngIf = "( atmNumber.touched) && ( atmNumber.invalid)" 
+                style="margin-top: 5px;">
+                  <span *ngIf=" atmNumber.errors.required">ATM number is Required</span>  
+                    <span *ngIf="searchFilter.controls['id'].hasError('pattern')">ATM number should have exactly 12 digits starting with 52</span>                 
+                </div>
+            </div>
+            <p class="text-danger">{{validAtmNumberString}}</p>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+    </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isOtpFlag">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" >
+      <div  style="width: 400px;">
+        <form [formGroup]="verifyOtp"  (ngSubmit)="verify()">
+    
+            <div class="form-group">
+              <label for="name">OTP</label>
+              <input type="text" class="form-control"  formControlName="otp" data-toggle="tooltip" 
+                 data-placement="right" placeholder="Enter Otp number" >
+                 <div class="alert alert-danger" *ngIf = "( otpNumber.touched) && ( otpNumber.invalid)" 
+                style="margin-top: 5px;">
+                  <span *ngIf=" otpNumber.errors.required">OTP is Required</span>  
+                    <span *ngIf="verifyOtp.controls['otp'].hasError('pattern')">OTP should have 4 digits</span>                 
+                </div>
+            </div>
+            <p class="text-danger">{{otpSucess}}</p>
+            <button type="submit" class="btn btn-success">Verify</button>
+        </form>
+    </div>
+    </div>
+  </div>
+
+  <div>
+    &nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="row" *ngIf="isCardBlockFlag">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" >
+      <div  style="width: 400px;">
+        <form [formGroup]="cardField"  (ngSubmit)="request()">
+          <p>{{otpSucess}}</p>
+          <button type="submit" class="btn btn-success">card block</button>
+      </form>
+    </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isDoneFlag">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" >
+      <div  style="width: 400px;">
+        <h2>{{sucess}}</h2>
+        <button type="submit" class="btn btn-success" (click)="refresh()">new card block</button>
+    </div>
+    </div>
+  </div>
+
+
+  
